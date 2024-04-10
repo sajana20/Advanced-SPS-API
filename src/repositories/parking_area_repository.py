@@ -10,7 +10,6 @@ class ParkingAreaRepository():
         db = database_config.database()
         try:
             with db.cursor() as cursor:
-                # Read data from database
                 sql = f"SELECT slot_id, user_id, availability, poi FROM parking_area"
                 cursor.execute(sql)
 
@@ -52,11 +51,8 @@ class ParkingAreaRepository():
         db = database_config.database()
         try:
             with db.cursor() as cursor:
-                # Read data from database
                 sql = f"SELECT 1 FROM parking_area WHERE slot_id = {slot_id} AND user_id <> 0"
                 cursor.execute(sql)
-
-                # Fetch all rows
                 data = cursor.fetchone()
                 json_data = json.dumps({'availability': 1 if data is None else 0})
                 db.close()

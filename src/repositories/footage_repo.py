@@ -1,7 +1,6 @@
 from src.database import DatabaseConfig
 import json
 
-
 class FootageRepository():
 
     def set_footage(self, slot_id, file_name):

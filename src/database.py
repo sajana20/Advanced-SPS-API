@@ -1,7 +1,4 @@
 import mysql.connector
-
-
-# Creating connection object
 class DatabaseConfig:
 
     def database(self):

@@ -5,11 +5,9 @@ from src.repositories.user_token_repo import UserTokenRepository
 from src.repositories.user_reservation_repo import UserReservationRepository
 from src.push_notification import Notification
 from src.repositories.footage_repo import FootageRepository
-
 import json
 
 app = Flask(__name__)
-
 
 @app.route("/login", methods=['post'])
 def login():
@@ -26,9 +24,8 @@ def signup():
     return UserRepository().set_user_details(user_name, email, password)
 
 
-@app.route("/logout", methods=['delete'])
-def logout():
-    user_id = request.form["user_id"]
+@app.route("/logout/<user_id>", methods=['post'])
+def logout(user_id):
     return UserTokenRepository().delete_user_token(user_id)
 
 
@@ -47,7 +44,7 @@ def set_availability():
 
     ParkingAreaRepository().update_parking_availability(user_id, slot_id, availability)
     if (user_id == '0'):
-        UserReservationRepository().update_activie_status(active, slot_id)
+        UserReservationRepository().update_active_status(active, slot_id)
     else:
         UserReservationRepository().update_user_reservation(user_id, slot_id, active)
     return json.dumps({"status": "Success"})

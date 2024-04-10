@@ -2,8 +2,6 @@ from src.database import DatabaseConfig
 import json
 from datetime import datetime
 
-
-
 class UserReservationRepository():
     def update_user_reservation(self, user_id, slot_id, active):
         database_config = DatabaseConfig()
@@ -20,7 +18,7 @@ class UserReservationRepository():
         finally:
             db.close()
 
-    def update_activie_status(self, active, slot_id):
+    def update_active_status(self, active, slot_id):
         database_config = DatabaseConfig()
         db = database_config.database()
 
